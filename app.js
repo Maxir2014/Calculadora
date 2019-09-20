@@ -3,6 +3,7 @@ window.onload = function () {
   let firstValue
   let selectedOperator
   let secondValue
+  let memoryNumber=0
 
   const display  = document.getElementById('display')
   const btnMC    = document.getElementById('btnMC')
@@ -25,6 +26,7 @@ window.onload = function () {
   const btn0     = document.getElementById('btn0')
   const btnPunto = document.getElementById('btnPunto')
   const btnEqual = document.getElementById('btnEqual')
+  const btnMM    = document.getElementById('btnMM')
 
   const buttonOnClick = function(event){
     display.innerText += event.target.textContent
@@ -39,9 +41,25 @@ window.onload = function () {
     console.log("selectedOperator", selectedOperator)
   }
 
-  btnMC.onclick = buttonOnClick
-  btnMas.onclick = buttonOnClick
-  btnMenos.onclick = buttonOnClick
+  btnMas.onclick = function(event){
+    memoryNumber +=parseFloat(display.innerText)
+    console.log("memoryNumber+",memoryNumber)
+  }
+
+  btnMenos.onclick = function(event){
+    memoryNumber -=parseFloat(display.innerText)
+    console.log("memoryNumber-",memoryNumber)
+  }
+  
+  btnMM.onclick = function(event){
+    display.innerText = memoryNumber
+  }
+
+  btnMC.onclick = function(event){
+    memoryNumber = ""
+    console.log("memoryNumberC",memoryNumber)
+  }
+  
   btnSeven.onclick = buttonOnClick
   btnEigth.onclick = buttonOnClick
   btnNine.onclick = buttonOnClick
@@ -55,6 +73,8 @@ window.onload = function () {
 
   btnC.onclick = function(){
     display.innerText = "";
+    secondValue = 0
+    firstValue = 0
   }
 
   btn0.onclick = buttonOnClick
