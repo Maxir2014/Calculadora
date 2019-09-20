@@ -86,24 +86,22 @@ window.onload = function () {
   btnResta.onclick = operatorFuntion
 
   btnEqual.onclick = function(){
-    let result
     secondValue = parseFloat(display.innerText)
-    console.log(firstValue, secondValue)
-    switch (selectedOperator) {
-      case '+':
-        result = firstValue + secondValue
-        break;
-    case '-':
-        result = firstValue - secondValue
-        break;
-    case '*':
-        result = firstValue * secondValue
-        break;
-    case '/':
-        result = firstValue / secondValue
-        break;
-    default:
+    const option = {
+      baseURL : "http://localhost:3000",
+      timeout : 5000,
+      method  : "GET",
+      headers :{
+        "Content-Type":"application/json",
+      }
     }
-    display.innerText = result
+    fetch(`http://localhost:3000/getresult/${firstValue}/${secondValue}/${selectedOperator}`,option)
+    .then(res =>res.json())
+    .then((response)=> {
+      console.log(response)
+      display.innerText = response.result
+    })
+    
+
   }
 }
