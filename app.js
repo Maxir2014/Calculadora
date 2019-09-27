@@ -95,6 +95,21 @@ window.onload = function () {
         "Content-Type":"application/json",
       }
     }
+    switch(selectedOperator){
+      case '+' : 
+        selectedOperator = 'sum';
+        break;
+      case '-' : 
+        selectedOperator = 'rest'
+        break;
+      case '-' : 
+        selectedOperator = 'mult'
+        break;  
+      case '-' : 
+        selectedOperator = 'div'
+        break;
+    }
+
     fetch(`http://localhost:3000/getresult/${firstValue}/${secondValue}/${selectedOperator}`,option)
     .then(res =>res.json())
     .then((response)=> {

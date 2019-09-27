@@ -6,28 +6,33 @@ const app = express() //INSTANCIAMOS LA FUNCIÓN
 app.use(bodyParser.urlencoded({extended: true}))
 app.use(bodyParser.json())
 app.use(cors())
-app.get('/getresult/:firstValue/:secondValue/:selectedOperator', function (req, res) {      //
-    console.log(req.params)
-    let result
+
+app.get('/getresult/:firstValue/:secondValue/sum', function (req, res) {      //
     const firstValue = parseFloat(req.params.firstValue)
     const secondValue = parseFloat(req.params.secondValue)
-
-    switch (req.params.selectedOperator) {
-        case '+':
-          result = firstValue + secondValue
-          break;
-      case '-':
-          result = firstValue - secondValue
-          break;
-      case '*':
-          result = firstValue * secondValue
-          break;
-      case '/':
-          result = firstValue / secondValue
-          break;
-      default:
-      }
-      console.log(res)
+    let result = firstValue + secondValue
+    console.log('+' + result)
+    res.send({result : result})
+})
+app.get('/getresult/:firstValue/:secondValue/rest', function (req, res) {      //
+    const firstValue = parseFloat(req.params.firstValue)
+    const secondValue = parseFloat(req.params.secondValue)
+    let result = firstValue - secondValue
+    console.log('-' + result)
+    res.send({result : result})
+})
+app.get('/getresult/:firstValue/:secondValue/mult', function (req, res) {      //
+    const firstValue = parseFloat(req.params.firstValue)
+    const secondValue = parseFloat(req.params.secondValue)
+    let result = firstValue * secondValue
+    console.log('*' + result)
+    res.send({result : result})
+})
+app.get('/getresult/:firstValue/:secondValue/div', function (req, res) {      //
+    const firstValue = parseFloat(req.params.firstValue)
+    const secondValue = parseFloat(req.params.secondValue)
+    let result = firstValue / secondValue
+    console.log('/' + result)
     res.send({result : result})
 })
  
